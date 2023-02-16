@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-N = 10                           #nurses
+N = 10                          #nurses
 D = 2                           #days
 S = 4                           #shifts
 a = 1                           #min_nurses_per_shift

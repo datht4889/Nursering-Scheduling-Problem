@@ -18,8 +18,6 @@ for i in range(randint(0, N)):
     if randint(0, 1) == 1 and ran_day not in F[ran_nurse]:
             F[ran_nurse].append(ran_day)
 
-N, D, S, a, b, F = 18, 10, 4, 3, 7, [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [1], [0], []]
-
 
 #function to get neighbors of a feasible solution
 def neighbor(ma):
@@ -236,7 +234,7 @@ start_time=time.time()
 Anealing_solution = Anealing()
 end_time=time.time()
 print('Solution using Simulated Anealing:')
-# print_solution(Anealing_solution)
+print_solution(Anealing_solution)
 print('\nMaximum night shift in the solution is' ,max_night_shift(Anealing_solution))
 print('Running time:', round((end_time-start_time),2), 's')
 print()
@@ -270,7 +268,7 @@ start_time=time.time()
 Tabu_solution = Tabu()
 end_time=time.time()
 print('Solution using Tabu Search:')
-# print_solution(Tabu_solution)
+print_solution(Tabu_solution)
 print('\nMaximum night shift in the solution is' ,max_night_shift(Tabu_solution))
 print('Running time:', round((end_time-start_time),2), 's')
 

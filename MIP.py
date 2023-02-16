@@ -1,10 +1,12 @@
 from ortools.linear_solver import pywraplp
 from random import *
 import math
+import time
+
 
 # random instance
-N = randint(5, 20)                                #nurses
-D = randint(1, 10)                                #days
+N = randint(20, 100)                              #nurses
+D = randint(15, 30)                               #days
 S = 4                                             #shifts
 a = randint(1, int(N/S))                          #min_nurses_per_shift
 b = randint(math.ceil(N/S), math.ceil(1.5*N/S))   #max_nurses_per_shift
@@ -13,11 +15,12 @@ F = [[] for i in range(N)]                        #free_days
 
 for i in range(randint(0, N)):
     ran_nurse = randint(0, N-1)
-    ran_day = randint(0, D)
+    ran_day = randint(0, D-1)
     if randint(0, 1) == 1 and ran_day not in F[ran_nurse]:
             F[ran_nurse].append(ran_day)
 
-# N, D, S, a, b, F = 18, 10, 4, 3, 7, [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [1], [0], []]
+
+start_time = time.time()
 
 solver = pywraplp.Solver.CreateSolver('SCIP')
 
@@ -52,10 +55,10 @@ for nurse in range(N):
         constraint.SetCoefficient(x[(nurse, day, S)], 1)
 
 # rest day
-# for nurse in range(N):
-#     for day in F[nurse]:
-#         constraint = solver.Constraint(1, 1)
-#         constraint.SetCoefficient(x[(nurse, day, S)], 1)
+for nurse in range(N):
+    for day in F[nurse]:
+        constraint = solver.Constraint(1, 1)
+        constraint.SetCoefficient(x[(nurse, day, S)], 1)
 
 
 #max night shift
@@ -76,9 +79,6 @@ if status == pywraplp.Solver.OPTIMAL:
             for shift in range(S+1):
                 optimal[nurse][day][shift] = int(x[(nurse, day, shift)].solution_value())
             
-
-    # for i in optimal:
-    #     print(i)
          
     print('', end = '\t')
     for day in range(D):
@@ -105,6 +105,9 @@ if status == pywraplp.Solver.OPTIMAL:
             max_night_shift = temp 
     
     print('\nMaximum night shift in the solution is' ,max_night_shift)
+
+    end_time = time.time()
+    print('Running time:', round(end_time - start_time, 2), 's')
 
 
 else:
