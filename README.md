@@ -39,7 +39,7 @@ The maximum number of night shifts worked by a nurse.
 * **CP.py** solves Nurse Rostering Problem with Constraint Programming based on OR-Tools.
 * **localsearch.py** solves Nurse Rostering Problem with Local Search and meta heuristic strategies.
 * **MIP.py** solves Nurse Rostering Problem by using Mixed Integer Programming. 
-* **shift_report.csv** is the file that we use to analyse and compare among algorithms in our report.
+* **shift.csv** and **time.csv** are files we use to analyse and compare among algorithms in our report.
 
 ## Contributors
 * Hoàng Thành Đạt: dat.ht214889@sis.hust.edu.vn
