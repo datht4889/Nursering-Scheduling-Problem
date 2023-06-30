@@ -1,4 +1,4 @@
-# SOLVING MAZE BASED ON HEURISTIC SEARCH (A* SEARCH)
+# 
 
 ## Description
 
